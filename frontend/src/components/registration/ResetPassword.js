@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { validateCharacters } from "./PasswordValidator";
 
 const defaultTheme = createTheme();
@@ -17,6 +17,9 @@ const defaultTheme = createTheme();
 export default function ResetPassword() {
 
     const { token, user_id } = useParams();
+
+    const navigate = useNavigate();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -71,6 +74,8 @@ export default function ResetPassword() {
         const data = await response.json();
 
         console.log(data.message);
+
+        navigate('/')
       }
 
     } catch (error) {
